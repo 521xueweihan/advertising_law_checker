@@ -49,8 +49,10 @@
     new Vue({
   el: '#editor',
   data: {
-    input: '最\n强的广告',
-    words: ['最', '第一', 'NO.1', 'TOP.1', '独一无二', '一流', '仅此一次',
+    input: '最强的广告',
+    words_regexp: [/最/g, /第一/g, /NO/g, /TOP/g, /独一无二/g, /一流/g, /仅此一次/g,
+        /最后一波/g, /大品牌之一/g],
+    words: ['最', '第一', 'NO', 'TOP', '独一无二', '一流', '仅此一次',
         '最后一波', '大品牌之一'],
       count: 0
   },
@@ -62,12 +64,16 @@
         console.log(this.input.split('\n'));
         var input_list = this.input.split('\n');
         for (i = 0; i < input_list.length; i++) {
-            if(this.words.indexOf(input_list[i]) > -1){
-                output_result +=  "<span style='color: red'>"+ input_list[i] +"</span>"+"<br>";
-                this.count += 1
-            } else {
-                output_result +=  input_list[i] + "<br>";
+            for (j = 0; j < this.words.length; j++) {
+                var fuck_word_indx = input_list[i].indexOf(this.words[j]);
+                if(fuck_word_indx > -1){
+                    input_list[i] = input_list[i].replace(
+                        this.words_regexp[j],
+                        "<span style='color: red'>"+ this.words[j] +"</span>");
+                    this.count += 1
+                }
             }
+            output_result += input_list[i] + "<br>"
         }
 //        output_html = output_html.replace(/' '/g, '&nbsp');
         output_result = '<p>' + output_result + '</p>';
