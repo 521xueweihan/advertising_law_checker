@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2019 广告发检查器</title>
+    <style>
+        html, body, #editor {
+      margin: 0;
+      height: 100%;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+    }
+
+    textarea, #editor div {
+      display: inline-block;
+      width: 49%;
+      height: 100%;
+      vertical-align: top;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+
+    textarea {
+      border: none;
+      border-right: 1px solid #ccc;
+      resize: none;
+      outline: none;
+      background-color: #f6f6f6;
+      font-size: 14px;
+      font-family: 'Monaco', courier, monospace;
+      padding: 20px;
+    }
+
+    code {
+      color: #f66;
+    }
+    </style>
+</head>
+<body>
+    <div id="editor">
+        <textarea :value="input" @input="update"></textarea>
+        {{ count }}
+        <div v-html="check_output"></div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    new Vue({
+  el: '#editor',
+  data: {
+    input: '输入待检测文本',
+    words: ['最', '第一', 'NO.1', 'TOP.1', '独一无二', '一流', '仅此一次',
+        '最后一波', '大品牌之一'],
+      count: 0
+  },
+  computed: {
+    check_output: function () {
+        this.count = 0;
+        var output_result = '';
+        console.log('input:'+this.input);
+        console.log(this.input.split('\n'));
+        var input_list = this.input.split('\n');
+        for (i = 0; i < input_list.length; i++) {
+            if(this.words.indexOf(input_list[i]) > -1){
+                output_result +=  "<span style='color: red'>"+ input_list[i] +"</span>"+"<br>";
+                this.count += 1
+            } else {
+                output_result +=  input_list[i] + "<br>";
+            }
+        }
+//        output_html = output_html.replace(/' '/g, '&nbsp');
+        output_result = '<p>' + output_result + '</p>';
+        console.log('output:'+output_result);
+      return output_result
+    }
+  },
+  methods: {
+    update: function (e) {
+        console.log('update:'+e.target.value);
+      this.input = e.target.value
+    }
+  }
+})
+</script>
+</html>
