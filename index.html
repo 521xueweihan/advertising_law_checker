@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>2019 广告法检查器</title>
-    <style>
-        html, body, #editor {
+  <meta charset="UTF-8">
+  <title>2019 广告法检查器</title>
+  <!-- <style>
+    html,
+    body,
+    #editor {
       margin: 0;
       height: 100%;
       font-family: 'Helvetica Neue', Arial, sans-serif;
       color: #333;
     }
 
-    textarea, #editor div {
+    textarea,
+    #editor div {
       display: inline-block;
       width: 49%;
       height: 100%;
@@ -34,17 +38,18 @@
     code {
       color: #f66;
     }
-    </style>
+  </style> -->
 </head>
-<body>
-    <div id="editor">
-        <textarea :value="input" @input="update"></textarea>
-        {{ count }}
-        <div v-html="check_output"></div>
-    </div>
 
+<body>
+  <div id="editor">
+    <!-- <textarea :value="input" @input="update"></textarea>
+        {{ count }}
+        <div v-html="check_output"></div> -->
+  </div>
+  <script src="./bundle.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script>
     new Vue({
   el: '#editor',
@@ -92,5 +97,6 @@
     }
   }
 })
-</script>
+</script> -->
+
 </html>
