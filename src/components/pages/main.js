@@ -42,7 +42,7 @@ class MainPage extends React.Component {
     // State
     open: PropTypes.bool,
     value: PropTypes.string,
-    valueTranslated: PropTypes.string,
+    valueTranslated: PropTypes.array,
     // Dispatcher
     onChange: PropTypes.func
   };
@@ -79,7 +79,8 @@ class MainPage extends React.Component {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.textOutput}>
-                  <Typography variant="body1">{this.props.valueTranslated}</Typography>
+                  <Typography variant="body1">
+                  </Typography>
                 </Card>
               </Grid>
             </Grid>

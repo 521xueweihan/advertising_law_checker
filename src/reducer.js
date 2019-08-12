@@ -83,13 +83,22 @@ export default (state = initStore, action) => {
       }
     /* pages.main */
     case 'pages.main.changeValue':
+      let list = action.value.split('\n');
+      let translated = [];
+      for (let line of list) {
+        for (let word of state.pages.main.words) {
+          let points = [];
+          for(let p = line.indexOf(word); p != -1; points.push(p), p = line.indexOf(word, p + 1));
+        }
+      }
       return {
         ...state,
         pages: {
           ...state.pages,
           main: {
             ...state.pages.main,
-            value: action.value
+            value: action.value,
+            valueTranslated: translated
           }
         }
       };
