@@ -68,19 +68,25 @@ class MainPage extends React.Component {
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <TextField
-                label="输入检测文本"
-                margin="dense"
-                variant="outlined"
-                multiline
-                className={classes.textInput}
-                value={this.state.value}
-                onChange={this.onChange}
+                  label="输入检测文本"
+                  margin="dense"
+                  variant="outlined"
+                  multiline
+                  className={classes.textInput}
+                  value={this.state.value}
+                  onChange={this.onChange}
                 />
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.textOutput}>
-                  <Typography variant="body1">
-                  </Typography>
+                  {this.props.valueTranslated.map((list, index) => (
+                    <Typography variant="body1" key={index}>
+                      {list.map((n, index) => {
+                        if(n.word) return (<span style={{ color: '#f00' }} key={index}>{n.word}</span>);
+                        else return (<span key={index}>{n.text}</span>);
+                      })}
+                    </Typography>
+                  ))}
                 </Card>
               </Grid>
             </Grid>

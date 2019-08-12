@@ -21,8 +21,7 @@ export default {
     main: {
       value: "test",
       valueTranslated: [[{ text: "test", compared: false }]],
-      words: ['最', '第一', 'NO', 'TOP', '独一无二', '一流', '仅此一次',
-        '最后一波', '大品牌之一']
+      words: ['最后一波', '大品牌之一', '最', '第一', 'NO', 'TOP', '独一无二', '一流', '仅此一次',]
     }
   }
 };
