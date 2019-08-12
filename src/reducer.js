@@ -82,9 +82,16 @@ export default (state = initStore, action) => {
         }
       }
     /* pages.main */
-    case 'pages.main.update':
+    case 'pages.main.changeValue':
       return {
-        ...state
+        ...state,
+        pages: {
+          ...state.pages,
+          main: {
+            ...state.pages.main,
+            value: action.value
+          }
+        }
       };
     default:
       return state;

@@ -18,6 +18,8 @@ export default {
     }
   },
   pages: {
-    main: {}
+    main: {
+      value: "test"
+    }
   }
 };
