@@ -19,7 +19,8 @@ export default {
   },
   pages: {
     main: {
-      value: "test"
+      value: "test",
+      valueTranslated: "test"
     }
   }
 };

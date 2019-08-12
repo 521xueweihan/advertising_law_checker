@@ -7,8 +7,9 @@ import Fade from '@material-ui/core/Fade';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   card: {
@@ -21,10 +22,18 @@ const styles = theme => ({
     marginBottom: 5
   },
   textInput: {
-    width: '100%',
+    width: '95%',
     marginLeft: 'auto',
     marginRight: 'auto',
     margin: 10
+  },
+  textOutput: {
+    width: '95%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    margin: 10,
+    padding: 10,
+    textAlign: 'left'
   }
 });
 
@@ -33,6 +42,7 @@ class MainPage extends React.Component {
     // State
     open: PropTypes.bool,
     value: PropTypes.string,
+    valueTranslated: PropTypes.string,
     // Dispatcher
     onChange: PropTypes.func
   };
@@ -55,15 +65,24 @@ class MainPage extends React.Component {
       <Fade in={this.props.open}>
         <Card className={classes.card}>
           <CardContent>
-            <TextField
-              label="输入检测文本"
-              margin="dense"
-              variant="outlined"
-              multiline
-              className={classes.textInput}
-              value={this.state.value}
-              onChange={this.onChange}
-            />
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <TextField
+                label="输入检测文本"
+                margin="dense"
+                variant="outlined"
+                multiline
+                className={classes.textInput}
+                value={this.state.value}
+                onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Card className={classes.textOutput}>
+                  <Typography variant="body1">{this.props.valueTranslated}</Typography>
+                </Card>
+              </Grid>
+            </Grid>
           </CardContent>
         </Card>
       </Fade>

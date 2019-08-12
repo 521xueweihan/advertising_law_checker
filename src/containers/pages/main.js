@@ -5,7 +5,8 @@ import Main from '../../components/pages/main';
 const mapStateToProps = (state) => {
   return {
     open: state.views.drawer.show === '',
-    value: state.pages.main.value
+    value: state.pages.main.value,
+    valueTranslated: state.pages.main.valueTranslated
   };
 }
 
