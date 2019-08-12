@@ -4,7 +4,7 @@
   "description": "检测违反最新广告法工具",
   "private": true,
   "scripts": {
-    "watch": "webpack-dev-server --config ./webpack.config.js",
+    "watch": "webpack-dev-server --config ./webpack.config.dev.js",
     "build": "webpack --config ./webpack.config.js",
     "test": "jest --watch"
   },
@@ -36,6 +36,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0"
