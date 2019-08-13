@@ -126,9 +126,49 @@ export default (state = initStore, action) => {
         });
 
         // 填充节点，将非关键词部分也作为节点填充进节点列表
-        // 待完成
+        // new_nodes 为新的一批已填充过的节点
+        let new_nodes = [];
+        if(nodes.length < 1) {
+          // 如果节点列表完全是空的，那么就直接使用整行文本作为转换结果
+          new_nodes.push({
+            from: 0,
+            to: line.length,
+            text: line
+          });
+        } else {
+          // 检查开头是否有空隙
+          if(nodes[0].from > 0) {
+            new_nodes.push({
+              from: 0,
+              to: nodes[0].from,
+              text: line.substr(0, nodes[0].from)
+            });
+          }
+          // 逐个检查空隙
+          for(let node of nodes) {
+            // 检查 new_nodes 的最后一项与当前遍历到的 node 之间是否有空隙
+            if(new_nodes.length > 0 && new_nodes[new_nodes.length - 1].to < node.from) {
+              // 检查到有空隙，填充一下
+              new_nodes.push({
+                from: new_nodes[new_nodes.length - 1].to,
+                to: node.from,
+                text: line.substr(new_nodes[new_nodes.length - 1].to, node.from - new_nodes[new_nodes.length - 1].to)
+              });
+            }
+            // 检查过后，补上 node
+            new_nodes.push(node);
+          }
+          // 检查末尾是否有空隙
+          if(new_nodes[new_nodes.length - 1].to < line.length) {
+            new_nodes.push({
+              from: new_nodes[new_nodes.length - 1].to,
+              to: line.length,
+              text: line.substr(new_nodes[new_nodes.length - 1].to, line.length - new_nodes[new_nodes.length - 1].to)
+            });
+          }
+        }
         
-        translated.push(nodes);
+        translated.push(new_nodes);
       }
       return {
         ...state,
