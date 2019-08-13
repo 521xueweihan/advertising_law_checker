@@ -85,6 +85,9 @@ export default (state = initStore, action) => {
     case 'pages.main.changeValue':
       // 返回结果，这是一个二维数组，第一维为行，第二维为节点对象列表
       let translated = [];
+      // 关键词出现次数的统计记录
+      let wordState = {};
+      for(let key of state.pages.main.words) wordState[key] = 0;
       // 拆分各行；先识别此次动作是否未提供文本，如果未提供就不变更当前的文本内容，否则从 action 中提取
       let list = action.value === undefined ? state.pages.main.value.split('\n') : action.value.split('\n');
       // 遍历各行
@@ -111,6 +114,8 @@ export default (state = initStore, action) => {
           });
           // 合并入节点列表
           nodes = nodes.concat(points);
+          // 关键词数量统计写入
+          wordState[word] += points.length;
         }
 
         // 整理节点列表，进行排序
@@ -177,7 +182,8 @@ export default (state = initStore, action) => {
           main: {
             ...state.pages.main,
             value: action.value,
-            valueTranslated: translated
+            valueTranslated: translated,
+            wordState: wordState
           }
         }
       };

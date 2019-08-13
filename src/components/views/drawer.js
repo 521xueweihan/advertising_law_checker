@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import SettingIcon from 'mdi-material-ui/SettingsOutline';
 import InfoIcon from 'mdi-material-ui/InformationOutline';
 import ThemeIcon from 'mdi-material-ui/Palette';
+import StateIcon from 'mdi-material-ui/Thermostat';
 
 const styles = theme => ({
   list: {
@@ -58,6 +59,12 @@ class MainDrawer extends React.Component {
               <ThemeIcon />
             </ListItemIcon>
             <ListItemText primary='皮肤主题' />
+          </ListItem>
+          <ListItem button onClick={() => this.props.onToggleDialog('state')}>
+            <ListItemIcon>
+              <StateIcon />
+            </ListItemIcon>
+            <ListItemText primary='统计' />
           </ListItem>
         </List>
       </Drawer>

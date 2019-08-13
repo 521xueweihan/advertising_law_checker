@@ -7,6 +7,7 @@ import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import AboutDialog from '../../containers/dialog/about';
 import ThemeDialog from '../../containers/dialog/theme';
 import SettingDialog from '../../containers/dialog/setting';
+import StateDialog from '../../containers/dialog/state';
 
 import MainPage from '../../containers/pages/main';
 
@@ -37,6 +38,7 @@ class Main extends React.Component {
         <AboutDialog />
         <ThemeDialog />
         <SettingDialog />
+        <StateDialog />
         {/* Views*/}
         <Fab />
         <Drawer />
