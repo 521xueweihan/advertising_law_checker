@@ -49,6 +49,12 @@ class About extends React.Component {
           <Typography paragraph variant='body1'>
             (https://github.com/521xueweihan/advertising_law_checker)
           </Typography>
+          <Typography paragraph variant='body1' className={classes.textAlignRight}>
+            贡献者
+          </Typography>
+          <Typography paragraph variant='body1' className={classes.textAlignRight}>
+            521xueweihan, langyo
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.onClose} color='primary'>
