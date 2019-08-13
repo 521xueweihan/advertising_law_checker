@@ -85,8 +85,8 @@ export default (state = initStore, action) => {
     case 'pages.main.changeValue':
       // 返回结果，这是一个二维数组，第一维为行，第二维为节点对象列表
       let translated = [];
-      // 拆分各行
-      let list = action.value.split('\n');
+      // 拆分各行；先识别此次动作是否未提供文本，如果未提供就不变更当前的文本内容，否则从 action 中提取
+      let list = action.value === undefined ? state.pages.main.value.split('\n') : action.value.split('\n');
       // 遍历各行
       for (let line of list) {
         // 节点储存变量

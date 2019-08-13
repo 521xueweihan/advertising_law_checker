@@ -11,9 +11,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClose: () => dispatch({
+  onClose: () => (dispatch({
     type: 'views.dialog.reset'
-  }),
+  }),dispatch({
+    type: 'pages.main.changeValue'
+  })),
   onToggleNativeMode: () => dispatch({
     type: 'views.theme.toggleNative'
   }),
