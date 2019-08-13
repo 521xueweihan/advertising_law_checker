@@ -16,16 +16,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   content: {
@@ -38,7 +36,10 @@ const styles = theme => ({
   divider: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
-  }
+  },
+  textInput: {
+    width: '100%'
+  },
 });
 
 class Setting extends React.Component {
@@ -46,10 +47,23 @@ class Setting extends React.Component {
     // State
     show: PropTypes.bool,
     native: PropTypes.bool,
+    words: PropTypes.string,
     // Dispatcher
     onClose: PropTypes.func,
-    onToggleNativeMode: PropTypes.func
+    onToggleNativeMode: PropTypes.func,
+    onChangeWords: PropTypes.func
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      words: props.words
+    }
+  }
+
+  onChangeWords = e => {
+    this.setState({ words: e.target.value }, () => this.props.onChangeWords(this.state.words));
+  }
 
   render() {
     const { classes } = this.props;
@@ -67,7 +81,7 @@ class Setting extends React.Component {
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel>
                 语言
-            </InputLabel>
+              </InputLabel>
               <Select
                 value={this.props.language}
                 onChange={null}
@@ -75,6 +89,22 @@ class Setting extends React.Component {
               >
                 <MenuItem value='zh-chs'>简体中文</MenuItem>
               </Select>
+            </FormControl>
+          </FormGroup>
+          <Divider className={classes.divider} />
+          <FormLabel>关键词列表</FormLabel>
+          <FormGroup>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <TextField
+                label="一词一行"
+                margin="dense"
+                variant="outlined"
+                multiline
+                rowsMax={5}
+                className={classes.textInput}
+                value={this.state.words}
+                onChange={this.onChangeWords}
+              />
             </FormControl>
           </FormGroup>
         </DialogContent>

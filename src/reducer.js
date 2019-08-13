@@ -181,6 +181,17 @@ export default (state = initStore, action) => {
           }
         }
       };
+    case 'pages.main.changeWords':
+      return {
+        ...state,
+        pages: {
+          ...state.pages,
+          main: {
+            ...state.pages.main,
+            words: action.words
+          }
+        }
+      }
     default:
       return state;
   }
