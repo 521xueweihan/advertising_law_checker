@@ -1,0 +1,45 @@
+{
+  "name": "advertising_law_checker",
+  "version": "0.1.0",
+  "description": "检测违反最新广告法工具",
+  "private": true,
+  "scripts": {
+    "watch": "webpack-dev-server --config ./webpack.config.dev.js",
+    "build": "webpack --config ./webpack.config.js",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/521xueweihan/advertising_law_checker.git"
+  },
+  "author": "521xueweihan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/521xueweihan/advertising_law_checker/issues"
+  },
+  "homepage": "https://github.com/521xueweihan/advertising_law_checker#readme",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "^4.3.2",
+    "babel-loader": "^8.0.6",
+    "classnames": "^2.2.6",
+    "jest": "^24.8.0",
+    "mdi-material-ui": "^6.3.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "string-hash": "^1.1.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  }
+}

@@ -1,96 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
+
 <head>
-    <meta charset="UTF-8">
-    <title>2019 广告法检查器</title>
-    <style>
-        html, body, #editor {
-      margin: 0;
-      height: 100%;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      color: #333;
-    }
-
-    textarea, #editor div {
-      display: inline-block;
-      width: 49%;
-      height: 100%;
-      vertical-align: top;
-      box-sizing: border-box;
-      padding: 0 20px;
-    }
-
-    textarea {
-      border: none;
-      border-right: 1px solid #ccc;
-      resize: none;
-      outline: none;
-      background-color: #f6f6f6;
-      font-size: 14px;
-      font-family: 'Monaco', courier, monospace;
-      padding: 20px;
-    }
-
-    code {
-      color: #f66;
-    }
-    </style>
+  <meta charset="UTF-8">
+  <title>2019 广告法检查器</title>
 </head>
-<body>
-    <div id="editor">
-        <textarea :value="input" @input="update"></textarea>
-        {{ count }}
-        <div v-html="check_output"></div>
-    </div>
 
+<body>
+  <div id="editor">
+  </div>
+  <script src="./bundle.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<script>
-    new Vue({
-  el: '#editor',
-  data: {
-    input: 'HelloGitHub全球第一品牌\n' +
-    '\n' +
-    '最\n' +
-    '强的广告\n' +
-    '最强的广告',
-    words_regexp: [/最/g, /第一/g, /NO/g, /TOP/g, /独一无二/g, /一流/g, /仅此一次/g,
-        /最后一波/g, /大品牌之一/g],
-    words: ['最', '第一', 'NO', 'TOP', '独一无二', '一流', '仅此一次',
-        '最后一波', '大品牌之一'],
-      count: 0
-  },
-  computed: {
-    check_output: function () {
-        this.count = 0;
-        var output_result = '';
-        console.log('input:'+this.input);
-        console.log(this.input.split('\n'));
-        var input_list = this.input.split('\n');
-        for (i = 0; i < input_list.length; i++) {
-            for (j = 0; j < this.words.length; j++) {
-                var fuck_word_indx = input_list[i].indexOf(this.words[j]);
-                if(fuck_word_indx > -1){
-                    input_list[i] = input_list[i].replace(
-                        this.words_regexp[j],
-                        "<span style='color: red'>"+ this.words[j] +"</span>");
-                    this.count += 1
-                }
-            }
-            output_result += input_list[i] + "<br>"
-        }
-//        output_html = output_html.replace(/' '/g, '&nbsp');
-        output_result = '<p>' + output_result + '</p>';
-        console.log('output:'+output_result);
-      return output_result
-    }
-  },
-  methods: {
-    update: function (e) {
-        console.log('update:'+e.target.value);
-      this.input = e.target.value
-    }
-  }
-})
-</script>
+
 </html>
